@@ -5,14 +5,14 @@
 #include <QList>
 #include <QMap>
 #include <QMapIterator>
-#include <QtWidgets/QMessageBox>
+//#include <QtWidgets/QMessageBox>
 #include <QStringListModel>
 #include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QNetworkAccessManager>
 #include <QSslConfiguration>
 #include <QUrl>
-#include <QUrlQuery>
+//#include <QUrlQuery>
 #include <QDebug>
 #include <QSettings>
 #include <QVariant>
@@ -21,10 +21,10 @@
 #include <QStandardItemModel>
 #include <QMenu>
 #include <QModelIndex>
-#include <QJsonObject>
-#include <QJsonDocument>
-#include <QJsonArray>
-#include <QJsonParseError>
+#include <QJsonObject.h>
+#include <QJsonDocument.h>
+#include <QJsonArray.h>
+#include <QJsonParseError.h>
 
 #include <o2/src/o2.h>
 #include <o2/src/o2settingsstore.h>

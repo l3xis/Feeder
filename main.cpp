@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include <QApplication>
-#include <QtWebKit>
+//#include <QtWebKit>
 
 int main(int argc, char *argv[])
 {

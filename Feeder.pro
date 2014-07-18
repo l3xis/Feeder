@@ -4,7 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network webkitwidgets script
+QT       += core gui network script webkit
+# webkitwidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -53,3 +54,6 @@ FORMS    += mainwindow.ui \
 
 OTHER_FILES += \
     o2/src/src.pri
+
+INCLUDEPATH += ../qjson4
+LIBS += -L../qjson4 -lqjson4

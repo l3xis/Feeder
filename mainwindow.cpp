@@ -199,7 +199,7 @@ void MainWindow::handleCategoryResp(QByteArray data)
 
     QJsonParseError jerror;
     QJsonDocument doc = QJsonDocument::fromJson(data,&jerror);
-    qDebug()<<doc;
+    //qDebug()<<doc;
     if(jerror.error == QJsonParseError::NoError || ! doc.isEmpty()) {
         QJsonArray arr = doc.array();
         QString tempLabel,tempId;
@@ -230,7 +230,7 @@ void MainWindow::handleSubscriptionsResp(QByteArray data)
 {
     QJsonParseError jerror;
     QJsonDocument doc = QJsonDocument::fromJson(data,&jerror);
-    qDebug()<<doc;
+    //qDebug()<<doc;
     if(jerror.error == QJsonParseError::NoError || ! doc.isEmpty()) {
         QJsonArray arr = doc.array();
         QString tempTitle,templabel,tempId;
@@ -376,7 +376,7 @@ void MainWindow::alterItemFont(bool bold, QStandardItem *item)
 
 void MainWindow::on_actionAbout_Qt_triggered()
 {
-    QMessageBox::aboutQt(this);
+    //QMessageBox::aboutQt(this);
 
 }
 
