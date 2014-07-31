@@ -43,7 +43,7 @@
 #define CONTENT_UNREAD 105
 #define LAST_READ_ENTRY_ID 106
 
-const char CLIENT_SECRET[] = "W60IW73DYSUIISZX4OUP";
+const char CLIENT_SECRET[] = "YDRYI5E8OP2JKXYSDW79";
 const char CLIENT_ID[] = "sandbox";
 const char TOKEN_URL[] = "https://sandbox.feedly.com/v3/auth/token";
 const char REQUEST_URL[] = "http://sandbox.feedly.com/v3/auth/auth";

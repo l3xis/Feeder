@@ -66,7 +66,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     o2->link();
 
-    reqCategories();
+    //reqCategories();
 }
 
 MainWindow::~MainWindow()
@@ -82,6 +82,10 @@ void MainWindow::onLinkedChanged() {
 
     //if(!o2->linked())
     //    o2->link();
+    if(o2->linked())
+    {
+        reqCategories();
+    }
 }
 
 void MainWindow::onLinkingFailed() {
@@ -93,6 +97,8 @@ void MainWindow::onLinkingFailed() {
 void MainWindow::onLinkingSucceeded() {
     // Login has succeeded
     qDebug("login succeeded");
+    qDebug("request categories");
+
 }
 
 
@@ -527,6 +533,18 @@ void MainWindow::on_treeView_customContextMenuRequested(const QPoint &pos)
     }
 
     treeMenu->popup(globalPos);
+}
+
+void MainWindow::onUserRequestLogin()
+{
+    if(!o2->linked())
+        o2->link();
+}
+
+void MainWindow::onUserRequestLogout()
+{
+    if(o2->linked())
+        o2->unlink();
 }
 
 

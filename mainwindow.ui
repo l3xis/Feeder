@@ -152,7 +152,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>22</height>
+     <height>20</height>
     </rect>
    </property>
    <property name="font">
@@ -162,7 +162,7 @@
    </property>
    <widget class="QMenu" name="menu_Account">
     <property name="title">
-     <string>I Want to...</string>
+     <string>Subscription</string>
     </property>
     <addaction name="actionSubscribe_to_a_feed"/>
    </widget>
@@ -173,6 +173,14 @@
     <addaction name="actionAbout_Qt"/>
     <addaction name="actionAbout"/>
    </widget>
+   <widget class="QMenu" name="menuUser">
+    <property name="title">
+     <string>User</string>
+    </property>
+    <addaction name="actionLogin"/>
+    <addaction name="actionLogout"/>
+   </widget>
+   <addaction name="menuUser"/>
    <addaction name="menu_Account"/>
    <addaction name="menuHelp"/>
   </widget>
@@ -204,6 +212,16 @@
     <font>
      <pointsize>10</pointsize>
     </font>
+   </property>
+  </action>
+  <action name="actionLogin">
+   <property name="text">
+    <string>Login</string>
+   </property>
+  </action>
+  <action name="actionLogout">
+   <property name="text">
+    <string>Logout</string>
    </property>
   </action>
  </widget>
