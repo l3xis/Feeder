@@ -49,7 +49,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //We do the linking to log in. If we've already logged in,
     //it won't hurt any way.
-    o2->link();
+
 
     //connect
     connect(o2, SIGNAL(linkedChanged()), this, SLOT(onLinkedChanged()));
@@ -63,6 +63,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(subDialog,SIGNAL(accepted()),this,SLOT(on_subscibe()));
     connect(listMenu,SIGNAL(triggered(QAction*)),this,SLOT(on_listView_menu_triggered(QAction*)));
     connect(treeMenu,SIGNAL(triggered(QAction*)),this,SLOT(on_treeView_menu_triggered(QAction*)));
+
+    o2->link();
+
     reqCategories();
 }
 
@@ -76,14 +79,20 @@ MainWindow::~MainWindow()
 void MainWindow::onLinkedChanged() {
     // Linking (login) state has changed.
     // Use o1->linked() to get the actual state
+
+    //if(!o2->linked())
+    //    o2->link();
 }
 
 void MainWindow::onLinkingFailed() {
     // Login has failed
+
+    qDebug("login fail");
 }
 
 void MainWindow::onLinkingSucceeded() {
     // Login has succeeded
+    qDebug("login succeeded");
 }
 
 
@@ -95,7 +104,9 @@ void MainWindow::onOpenBrowser(const QUrl &url) {
    //QDesktopServices::openUrl(url);
    ui->webView->load(url);
 
-   qDebug()<<"logging in";
+   QString dbg="go url:";
+   dbg.append(url.toString());
+   qDebug(dbg.toAscii().data());
 }
 
 void MainWindow::onTokenChanged()
@@ -197,9 +208,16 @@ void MainWindow::handleCategoryResp(QByteArray data)
         categorieMap.insert("Uncategorized",uncategorized);
     }
 
-    QJsonParseError jerror;
-    QJsonDocument doc = QJsonDocument::fromJson(data,&jerror);
+
     //qDebug()<<doc;
+    if(data.length()==0)
+    {
+        qDebug("no data recieved");
+        return;
+    }
+
+        QJsonParseError jerror;
+        QJsonDocument doc = QJsonDocument::fromJson(data,&jerror);
     if(jerror.error == QJsonParseError::NoError || ! doc.isEmpty()) {
         QJsonArray arr = doc.array();
         QString tempLabel,tempId;
@@ -223,14 +241,22 @@ void MainWindow::handleCategoryResp(QByteArray data)
         qDebug() << "error when parsing json";
     }
 
+
 }
 
 //FIXME: Can't handle subscriptions with many labels(tags, whatever)
 void MainWindow::handleSubscriptionsResp(QByteArray data)
 {
-    QJsonParseError jerror;
-    QJsonDocument doc = QJsonDocument::fromJson(data,&jerror);
+
     //qDebug()<<doc;
+    if(data.length()==0)
+    {
+        qDebug("no data recieved");
+        return;
+    }
+
+        QJsonParseError jerror;
+        QJsonDocument doc = QJsonDocument::fromJson(data,&jerror);
     if(jerror.error == QJsonParseError::NoError || ! doc.isEmpty()) {
         QJsonArray arr = doc.array();
         QString tempTitle,templabel,tempId;
@@ -265,19 +291,29 @@ void MainWindow::handleSubscriptionsResp(QByteArray data)
             }
         }
     }
+
 }
 
 //FIXME: If we load too much contents it will be really slow
 void MainWindow::handleContentsResp(QByteArray data)
 {
+    if(data.length()==0)
+    {
+        qDebug("no data recieved");
+        return;
+    }
     QJsonParseError jerror;
-    QJsonDocument doc = QJsonDocument::fromJson(data,&jerror);
+
     QString tempTitle,tempContent,tempEntryId,tempHref;
     bool Unread;
     QJsonObject tempObject;
     QJsonArray tempArray;
     int i = 1;
     //qDebug()<<doc;
+
+    QJsonDocument doc = QJsonDocument::fromJson(data,&jerror);
+
+
     if(jerror.error == QJsonParseError::NoError || ! doc.isEmpty()) {
         listModel->clear();
         QJsonObject obj = doc.object();

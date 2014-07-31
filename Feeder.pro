@@ -47,7 +47,8 @@ HEADERS  += mainwindow.h \
     o2/src/o2skydrive.h \
     o2/src/oxtwitter.h \
     o2/src/simplecrypt.h \
-    subscribedialog.h
+    subscribedialog.h \
+    state.h
 
 FORMS    += mainwindow.ui \
     subscribedialog.ui

@@ -33,6 +33,8 @@
 
 #include <subscribedialog.h>
 
+#include <state.h>
+
 #define FEED_ID 100
 #define CONTENT 101
 #define CONTENT_ENTRY_ID 102
@@ -131,6 +133,8 @@ private:
 
 
     QVector<QString> subscription;
+
+    state _state();
 };
 
 #endif // MAINWINDOW_H
